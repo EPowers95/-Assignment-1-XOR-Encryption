@@ -18,9 +18,15 @@ int main() {
         printf("Enter the string to encrypt: ");
         fgets(message, sizeof(message), stdin);
         message[strcspn(message, "\n")] = '\0'; // Remove newline
-        printf("Enter key for encryption: ");
-        fgets(key, sizeof(key), stdin);
-        key[strcspn(key, "\n")] = '\0'; 
+        do {
+            printf("Enter key for encryption: ");
+            fgets(key, sizeof(key), stdin);
+            key[strcspn(key, "\n")] = '\0';
+
+            if (strlen(key) == 0) {
+                printf("Key cannot be empty. Please enter a key.\n");
+            }
+        } while (strlen(key) == 0);
         printf("Enter filename to save encrypted data: ");
         scanf("%s", filename);
 
@@ -47,9 +53,15 @@ int main() {
         fread(message, sizeof(char), sizeof(message), file);
         fclose(file);
 
-        printf("Enter the key to decrypt: ");
-        fgets(key, sizeof(key), stdin);
-        key[strcspn(key, "\n")] = '\0'; // Remove newline
+        do {
+            printf("Enter key for decryption: ");
+            fgets(key, sizeof(key), stdin);
+            key[strcspn(key, "\n")] = '\0';
+
+            if (strlen(key) == 0) {
+                printf("Key cannot be empty. Please enter a key.\n");
+            }
+        } while (strlen(key) == 0);
 
         encryptDecrypt(message, key);
         printf("Decrypted message: %s\n", message);
