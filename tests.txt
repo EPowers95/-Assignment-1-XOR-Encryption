@@ -1,4 +1,6 @@
-Verify operation selection:
+Verifying core output
+
+Verify operation selection
     The program shall prompt the user to select encryption or decryption. To test this I'll launch the program and observe the initial prompt and enter encryption. 
 The program should accepts encryption selection and proceed to ask me for the text to encrypt. If the requirement is not met the program may immediately begin an operation 
 without allowing the user to choose, interpret the selection incorrectly, or start to do something other than encrypt.
@@ -49,3 +51,25 @@ Verify plaintext display
     The program should display the recovered plaintext to the user. To do this I'll select decrypt using the ciphertext file from Test 6 using the correct key and observe the 
 terminal output. The program should display the recovered plaintext ABC in a readable form. If this does not happen the program may display raw ciphertext bytes, print an incomplete 
 message, or fail to display the recovered plaintext in the terminal.
+
+Edge case testing
+
+Invalid operation selection 
+    To test this I'll enter an unsupported option when prompted to choose encryption or decryption then verify that the program rejects the input and requests a valid selection or 
+exits safely. If the test fails, the program may enter an unintended operation or behave unpredictably.
+
+Empty encryption/decryption key 
+    To test this I'll select encryption or decryption and submit an empty key then verify that the program rejects the empty key and does not proceed with the operation. If the test 
+fails, it may generate unusable ciphertext or produce misleading decryption output.
+
+Nonexistent input file 
+    To test this I'll select decryption and enter a filename that does not exist then verify that the program displays an appropriate error message and exits or returns safely. If 
+the test fails, it may crash or attempt to decrypt invalid data.
+
+Unreadable input file 
+    To test this I'll select decryption and provide a file that exists but cannot be read, such as a directory path where file reading is unsupported. Verify that the program 
+reports the read error and avoids processing invalid data. If the test fails, it may display garbage output or behave unpredictably.
+
+Unwritable output file 
+    To test this I'll select encryption and specify a filename in a location where the program cannot create or write files then verify that the program reports the error and does not claim that 
+encryption was successfully saved. If the test fails, it may report success despite failing to save the ciphertext.
