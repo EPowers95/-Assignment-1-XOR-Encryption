@@ -17,9 +17,10 @@ int main() {
     if (strcmp(choice, "encrypt") == 0) {
         printf("Enter the string to encrypt: ");
         fgets(message, sizeof(message), stdin);
+        message[strcspn(message, "\n")] = '\0'; // Remove newline
         printf("Enter key for encryption: ");
         fgets(key, sizeof(key), stdin);
-        message[strcspn(message, "\n")] = '\0'; // Remove newline
+        key[strcspn(key, "\n")] = '\0'; 
         printf("Enter filename to save encrypted data: ");
         scanf("%s", filename);
 
