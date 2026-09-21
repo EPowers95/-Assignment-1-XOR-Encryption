@@ -36,6 +36,7 @@ int main() {
     } else if (strcmp(choice, "decrypt") == 0) {
         printf("Enter filename to read encrypted data: ");
         scanf("%s", filename);
+        getchar();
 
         FILE *file = fopen(filename, "rb");
         if (file == NULL) {
