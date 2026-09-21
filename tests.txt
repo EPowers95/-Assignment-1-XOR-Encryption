@@ -1,0 +1,51 @@
+Verify operation selection:
+    The program shall prompt the user to select encryption or decryption. To test this I'll launch the program and observe the initial prompt and enter encryption. 
+The program should accepts encryption selection and proceed to ask me for the text to encrypt. If the requirement is not met the program may immediately begin an operation 
+without allowing the user to choose, interpret the selection incorrectly, or start to do something other than encrypt.
+
+Verify filename input
+    The program should prompt the user for a filename. To test this I'll launch the program, select encryption, and enter a valid filename such as encrypted.txt. The program 
+should accept the filename and use it as the destination for the encrypted data. If this does not happen the program may use a hardcoded filename, incorrectly parse the supplied 
+filename, or save the output somewhere other than the specified location.
+
+Verify plaintext input
+    The program should prompt the user for a plaintext message when encryption is selected. To test this I'll select encryption and enter the plaintext message "Hello World!". The 
+program should accept the complete message and makes it available for encryption. If this does not happen the program may read only the first word, truncate the message at a space, 
+or accidentally interpret part of the message as another input.
+
+Verify encryption key input
+    The program should prompt the user for an encryption key when encryption is selected. To do this I'll select encryption, enter a valid plaintext message, and provide the key KEY.
+The program should accept the key and uses it as the input for the XOR encryption operation. If this does not happen the program may use a default key, read the wrong input as the 
+key, or use an incorrectly stored key that produces ciphertext inconsistent with the user's input.
+
+Verify XOR encryption
+    The program should encrypt the plaintext using XOR with the supplied key. To do this I'll select encrypt to ecnrypt the message ABC using the key B. The key should repeat 
+to match the message length. Then I'll independently calculate the expected XOR output and compare it with the program's output. The program should produce the byte sequence 03 00 01
+corresponding to the XOR of each plaintext byte with the repeating key. If this does not happen the program may apply the key incorrectly, XOR only part of the message, or produce a 
+different byte sequence due to an incorrect algorithm or key-indexing calculation.
+
+Verify encrypted file output
+    The program should save the encrypted message to the specified filename. To do this I'll select encrypt ABC using the key B and specify encrypted.txt as the output filename. After 
+encryption, inspect the file to see if it contains the correct encrypted data. The program should create the specified file and stores 03 00 01 in it. If it does not the program may 
+save the plaintext instead, write an incorrect ciphertext, append unexpected data, or save the encrypted content to a different file.
+
+Verify decryption key input
+    The program should prompt the user for a decryption key when decryption is selected. To do this I'll select decryption, specify the encrypted file created in Test 6, and enter 
+the original key B. After this the program should accept the key and uses it to decrypt the data read from the specified file. If this does not happen the program may reuse an 
+unrelated key, fail to associate the supplied key with the decryption operation, or use an incorrect key representation.
+
+Verify encrypted file reading
+    The program should read the encrypted message from the specified file. To test this I'll use the valid ciphertext file encrypted.txt created in Test 6. Select decryption and 
+provide the correct filename. The program should read 03 00 01 and makes them available for decryption. If this does not happen the program may read only part of the file, interpret 
+binary ciphertext as a null-terminated string, or process unrelated data instead of the contents of the specified file.
+
+Verify XOR decryption
+    The program should decrypt the encrypted message using XOR with the supplied key. To do this I'll select decrypt using the ciphertext file from Test 6 using the original key B. 
+Then compare the recovered bytes against the original plaintext ABC. The program should apply XOR with the matching key and recover the original plaintext bytes exactly. If this does not happen 
+the program may produce corrupted characters, recover only part of the original message, or produce data that differs from the original plaintext because of incorrect key handling or 
+byte processing.
+
+Verify plaintext display
+    The program should display the recovered plaintext to the user. To do this I'll select decrypt using the ciphertext file from Test 6 using the correct key and observe the 
+terminal output. The program should display the recovered plaintext ABC in a readable form. If this does not happen the program may display raw ciphertext bytes, print an incomplete 
+message, or fail to display the recovered plaintext in the terminal.
