@@ -12,6 +12,7 @@ int main() {
     char choice[10], message[256], key[32], filename[256];
     printf("Enter 'encrypt' or 'decrypt': ");
     scanf("%s", choice);
+    getchar();
 
     if (strcmp(choice, "encrypt") == 0) {
         printf("Enter the string to encrypt: ");

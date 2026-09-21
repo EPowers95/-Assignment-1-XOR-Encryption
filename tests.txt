@@ -37,8 +37,8 @@ the original key B. After this the program should accept the key and uses it to 
 unrelated key, fail to associate the supplied key with the decryption operation, or use an incorrect key representation.
 
 Verify encrypted file reading
-    The program should read the encrypted message from the specified file. To test this I'll use the valid ciphertext file encrypted.txt created in Test 6. Select decryption and 
-provide the correct filename. The program should read 03 00 01 and makes them available for decryption. If this does not happen the program may read only part of the file, interpret 
+    The program should read the encrypted message from the specified file. To test this I'll use the valid ciphertext file encrypted.txt created in Test 6 then run xor and select decryption 
+and then provide the correct filename. The program should then print the plain text to the terminal. If this does not happen the program may read only part of the file, interpret 
 binary ciphertext as a null-terminated string, or process unrelated data instead of the contents of the specified file.
 
 Verify XOR decryption
